@@ -1,0 +1,389 @@
+/* Variables y Configuración General */
+:root {
+  --primary-green: #529d74;
+  --text-dark: #333333;
+  --text-gray: #666666;
+  --text-title: #4a4a4a;
+  --bg-light: #ffffff;
+  --card-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  --card-shadow-hover: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+body {
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+  line-height: 1.6;
+  font-weight: 500;
+}
+
+b, strong, h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+}
+
+/* Encabezado / Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 5%;
+  background-color: #fff;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.footer-logo-link {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+
+.logo-img {
+  height: 38px;
+}
+
+.logo-text-extra {
+  color: #888888;
+  font-size: 14px;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-gray);
+  font-weight: 700;
+  font-size: 14px;
+  transition: color 0.3s;
+}
+
+.nav-links a.active {
+  color: var(--text-dark);
+}
+
+.nav-links .btn-green-nav {
+  background-color: var(--primary-green);
+  color: white;
+  padding: 8px 18px;
+  border-radius: 20px;
+}
+
+/* Contenido Principal */
+.canva-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.canva-header {
+  margin-bottom: 35px;
+}
+
+.canva-header h1 {
+  font-size: 32px;
+  color: var(--text-title);
+  margin-bottom: 8px;
+}
+
+.canva-header .subtitle-main {
+  color: var(--text-gray);
+  font-size: 16px;
+}
+
+.canva-header .subtitle-sub {
+  color: var(--text-gray);
+  font-size: 15px;
+  margin-top: 2px;
+}
+
+/* Grilla del Canvas */
+.canva-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(3, minmax(140px, auto));
+  gap: 16px;
+}
+
+/* Estilo base de los cuadros mejorado para mayor contraste */
+.canva-card {
+  background-color: #ffffff;
+  border-radius: 20px;
+  /* Borde definido para separar del fondo blanco */
+  border: 1.5px solid #e2e8f0; 
+  /* Sombra más marcada pero suave */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); 
+  padding: 24px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.25s ease-in-out;
+}
+
+/* Efecto Hover al pasar el cursor sobre las tarjetas */
+.canva-card:hover {
+  /* Cambia el borde al verde corporativo */
+  border-color: var(--primary-green); 
+  /* Eleva la tarjeta */
+  transform: translateY(-5px); 
+  /* Intensifica la sombra */
+  box-shadow: 0 12px 24px rgba(82, 157, 116, 0.15); 
+}
+
+.canva-card:hover::before {
+  opacity: 1;
+}
+
+/* Estilo del texto dentro de la tarjeta */
+.canva-card h3 {
+  font-size: 17px;
+  color: #333333;
+  font-weight: 700;
+  transition: color 0.25s ease;
+}
+
+.canva-card:hover h3 {
+  color: var(--primary-green);
+}
+
+/* Posicionamiento en el Grid */
+.card-asociaciones { grid-column: 1 / 2; grid-row: 1 / 3; }
+.card-actividades { grid-column: 2 / 3; grid-row: 1 / 2; }
+.card-recursos { grid-column: 2 / 3; grid-row: 2 / 3; }
+.card-valor { grid-column: 3 / 4; grid-row: 1 / 3; }
+.card-relacion { grid-column: 4 / 5; grid-row: 1 / 2; }
+.card-canales { grid-column: 4 / 5; grid-row: 2 / 3; }
+.card-clientes { grid-column: 5 / 6; grid-row: 1 / 3; }
+.card-costes { grid-column: 1 / 3; grid-row: 3 / 4; }
+.card-ingresos { grid-column: 3 / 6; grid-row: 3 / 4; }
+
+/* Modal / Ventana Emergente */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-box {
+  background-color: #ffffff;
+  border-radius: 32px;
+  width: 90%;
+  max-width: 750px;
+  padding: 45px 50px;
+  position: relative;
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+}
+
+.modal-overlay.active .modal-box {
+  transform: scale(1);
+}
+
+.modal-close {
+  position: absolute;
+  top: 30px;
+  left: 35px;
+  background: none;
+  border: none;
+  font-size: 32px;
+  color: #777777;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.modal-close:hover {
+  color: #333333;
+}
+
+.modal-box h2 {
+  font-size: 26px;
+  color: var(--text-title);
+  margin-bottom: 25px;
+  margin-left: 35px;
+}
+
+.modal-body p {
+  color: #555555;
+  font-size: 16px;
+  margin-bottom: 18px;
+  line-height: 1.6;
+}
+
+.modal-body p:last-child {
+  margin-bottom: 0;
+}
+
+/* Pie de página */
+.footer {
+  margin-top: 80px;
+  border-top: 1px solid #e2e2e2;
+  padding: 25px 10%;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.footer-logo {
+  height: 28px;
+}
+
+.footer-subtext {
+  color: var(--text-gray);
+  font-size: 14px;
+}
+
+.footer-right a {
+  text-decoration: none;
+  color: #4a4a4a;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+/* Adaptación Responsiva */
+@media (max-width: 900px) {
+  .canva-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+
+  .canva-card {
+    grid-column: auto !important;
+    grid-row: auto !important;
+    min-height: 100px;
+  }
+
+  .modal-box {
+    padding: 35px 25px;
+  }
+
+  .modal-close {
+    top: 20px;
+    left: 20px;
+  }
+
+  .modal-box h2 {
+    margin-left: 25px;
+  }
+ 
+  /* --- Estilos base del Botón Hamburguesa (Oculto en Escritorio) --- */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 101;
+}
+
+.menu-toggle .bar {
+  width: 100%;
+  height: 3px;
+  background-color: var(--text-dark);
+  border-radius: 2px;
+  transition: all 0.3s ease-in-out;
+}
+
+/* --- Media Query para Celulares y Tablets (Pantallas menores a 768px) --- */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 15px 20px;
+    position: relative;
+  }
+
+  /* Mostrar el botón hamburguesa en móviles */
+  .menu-toggle {
+    display: flex;
+  }
+
+  /* Ocultar el menú de navegación por defecto en móviles */
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #ffffff;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 30px 0;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+    border-top: 1px solid #eaeaea;
+    /* Efecto desplegable oculto */
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.35s ease-in-out, opacity 0.3s ease-in-out;
+    z-index: 100;
+  }
+
+  /* Clase activa que despliega el menú en móvil */
+  .nav-links.active {
+    max-height: 400px;
+    opacity: 1;
+  }
+
+  .nav-links .btn-green-nav {
+    padding: 10px 24px;
+    border-radius: 25px;
+  }
+
+  /* Animación de las barras del botón hamburguesa cuando está abierto */
+  .menu-toggle.active .bar:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+  }
+
+  .menu-toggle.active .bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-toggle.active .bar:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+  }
+}
+}
